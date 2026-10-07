@@ -1,6 +1,6 @@
 /**
  * LA VISTA DEVELOPMENTS — EXCLUSIVE NEW CAIRO & CAPITAL PORTFOLIO
- * Main Interactive Script & Multi-Recipient Lead Routing
+ * Main Interactive Script & Multi-Recipient Lead Routing + Zapier Webhook
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -109,6 +109,7 @@ function initLeadForm() {
   const modalBackdrop = document.getElementById('leadSuccessModal');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalWhatsAppBtn = document.getElementById('modalWhatsAppBtn');
+  const inlineSuccess = document.getElementById('formSuccessInline');
 
   if (!form) return;
 
@@ -148,15 +149,23 @@ function initLeadForm() {
       PROCESSING...
     `;
 
-    // Lead payload
+    // Zapier Webhook Payload Data Structure
+    const zapierData = {
+      fullName: fullName,
+      phoneNumber: fullPhoneNumber,
+      landingPageUrl: window.location.href,       // Captures the full page URL
+      submissionDate: new Date().toISOString(),   // Captures the exact date and time
+    };
+
+    // Full Lead Payload for Logging and Email Routing
     const leadData = {
-      timestamp: new Date().toISOString(),
+      timestamp: zapierData.submissionDate,
       formattedTime: new Date().toLocaleString(),
       fullName: fullName,
       phoneNumber: fullPhoneNumber,
       countryCode: countryCode,
       portfolio: "La Vista Developments - Exclusive New Cairo & Capital",
-      source: window.location.href,
+      source: zapierData.landingPageUrl,
       targetRecipients: [
         "Rahma@irtkaz.com",
         "Mostafa.a.ashmawy@gmail.com",
@@ -164,7 +173,18 @@ function initLeadForm() {
       ]
     };
 
-    // Save lead to LocalStorage backup archive
+    // 1. Send to Zapier Webhook
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+        method: "POST",
+        body: JSON.stringify(zapierData),
+      });
+      console.log("Lead dispatched to Zapier webhook successfully:", zapierData);
+    } catch (zapierError) {
+      console.error("Zapier Webhook Error:", zapierError);
+    }
+
+    // 2. Save lead to LocalStorage backup archive
     try {
       const existingLeads = JSON.parse(localStorage.getItem('lavista_inquiries') || '[]');
       existingLeads.push(leadData);
@@ -174,8 +194,7 @@ function initLeadForm() {
       console.error('LocalStorage error:', err);
     }
 
-    // Backend lead dispatch to all 3 specified emails
-    // Targets: Rahma@irtkaz.com, Mostafa.a.ashmawy@gmail.com, Mostafa.ashmawy@irtkaz.com
+    // 3. Backend email routing to all 3 specified emails
     try {
       await fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
         method: "POST",
@@ -196,7 +215,7 @@ function initLeadForm() {
         })
       });
     } catch (apiError) {
-      console.warn("Direct API dispatch network fallback triggered:", apiError);
+      console.warn("Email dispatch fallback triggered:", apiError);
     }
 
     // Reset button
@@ -210,6 +229,14 @@ function initLeadForm() {
     const codeDisplay = document.getElementById('selectedCountryCodeText');
     if (flagDisplay) flagDisplay.textContent = '🇪🇬';
     if (codeDisplay) codeDisplay.textContent = '+20';
+
+    // Show Inline Success Banner
+    if (inlineSuccess) {
+      inlineSuccess.style.display = 'block';
+      setTimeout(() => {
+        inlineSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
 
     // Show Confirmation Modal
     if (modalBackdrop) {

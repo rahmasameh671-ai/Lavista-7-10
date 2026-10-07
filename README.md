@@ -41,8 +41,14 @@ As requested, the portfolio is no longer a compressed grid or summary cards.
 5. **WhatsApp Integration**:
    - **Floating Button**: Round green icon-only button (`#25D366`) linking directly to `+201033373331` (no text label).
    - **Inline Project CTAs**: Solid vibrant WhatsApp Green (`#25D366`) reading `CONTACT US` with dedicated prefilled inquiry texts.
-6. **Backend Lead Routing**:
-   - Submitted leads route directly to:
+6. **Backend Lead Routing & Zapier Webhook**:
+   - Integrated with live Zapier Webhook: `https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/`
+   - Automatically passes:
+     - `fullName`: Full submitted name
+     - `phoneNumber`: International phone number with country dial code
+     - `landingPageUrl`: Full URL of the landing page
+     - `submissionDate`: ISO 8601 submission timestamp
+   - Multi-recipient email routing fallback:
      - `Rahma@irtkaz.com`
      - `Mostafa.a.ashmawy@gmail.com`
      - `Mostafa.ashmawy@irtkaz.com`
