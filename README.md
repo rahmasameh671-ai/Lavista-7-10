@@ -11,7 +11,7 @@ As requested, the portfolio is no longer a compressed grid or summary cards.
 - An individual architectural backdrop & high-resolution visual render
 - Dedicated project narrative & architectural positioning
 - Unit typologies & space specifications (SQM)
-- Distinct financial console with starting price formatted in clean capital **'M'** (e.g., `31M EGP`, `8M EGP`)
+- Distinct financial console with starting price formatted in clean capital **'M'** (e.g., `31M EGP`, `9M EGP`)
 - Payment schedules (up to 10 years installments, 0% & 5% down payments)
 - Dedicated project-specific WhatsApp CTA button (`#25D366`) reading **`CONTACT US`** with prefilled inquiry message (`Hello, I would like to inquire about [Project Name]`).
 
@@ -66,11 +66,11 @@ As requested, the portfolio is no longer a compressed grid or summary cards.
 2. **Section 2: El Patio Town** (`#el-patio-town`)
    - New Cairo | Delivery in 2 Years | Luxury Villas | 30M EGP | 5% DP, 7 Years
 3. **Section 3: El Patio Oro** (`#el-patio-oro`)
-   - New Cairo | Ready to Move Available | 0% Down Payment | 17.2M EGP | 7 Years
+   - New Cairo | Ready to Move Available | 10% Down Payment | 17.2M EGP | 7 Years
 4. **Section 4: Patio Vida** (`#patio-vida`)
    - 5th Settlement | Luxury Apartments & Signature Duplexes | 11.5M EGP | 5% DP, 10 Years
 5. **Section 5: Patio Riva** (`#patio-riva`)
-   - 5th Settlement | Tranquil Lush Landscapes | 8M EGP (Portfolio Starting Point) | 5% DP, 8 Years
+   - 5th Settlement | Tranquil Lush Landscapes | 9M EGP (Portfolio Starting Point) | 5% DP, 8 Years
 6. **Section 6: Patio Hills** (`#patio-hills`)
    - 5th Settlement | Exclusive Private Standalone Villas Only | 21M EGP | 5% DP, 8 Years
 7. **Section 7: Patio Jade** (`#patio-jade`)
